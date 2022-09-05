@@ -59,7 +59,7 @@ int main(int argc, char **argv)
   {
     cv::Mat dst(H_i, W_i, CV_8UC3);                         //　点群画像
     cv::Mat dst_rf(H_i, W_i, CV_8UC3); // 芝生判定画像
-    cv::Mat dst_hsv(H_i, W_i, CV_8UC3);                     // image画像
+    cv::Mat dst_hsv(H_i, W_i, CV_8UC3);                     // image画像 
     for (int x = 0; x < dst.cols; x++)
     {
       for (int y = 0; y < dst.rows; y++)
