@@ -1,0 +1,22 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/user/lidar_data/reflection_intensity_map/src/reflection_intensity_map.cpp
+fstream
+-
+iostream
+-
+string
+-
+sstream
+-
+vector
+-
+opencv2/opencv.hpp
+-
+
