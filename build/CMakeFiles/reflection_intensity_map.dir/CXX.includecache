@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/home/user/lidar_data/reflection_intensity_map/src/reflection_intensity_map.cpp
+/home/user/lidar_data/reflectionintensitymap/src/reflection_intensity_map.cpp
 fstream
 -
 iostream
@@ -18,5 +18,7 @@ sstream
 vector
 -
 opencv2/opencv.hpp
+-
+math.h
 -
 
