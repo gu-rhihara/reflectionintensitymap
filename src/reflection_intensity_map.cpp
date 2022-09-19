@@ -6,25 +6,8 @@
 #include <opencv2/opencv.hpp>
 #include <math.h>
 //#define dst480_640
-#define L 2
-#define M 2
-#define N 1
 
 using namespace std;
-
-// void rocation_and_translation {
-// double x_i, y_i, res;
-// double c_r, s_r, r;
-// double x_c, y_c;
-// res = 0.10;
-// r = oz;
-// c_r = cos(r);
-// s_r = sin(r);
-// x_c = x * c_r - y * s_r;
-// y_c = x * s_r + y * c_r;
-// x_i = (campus_map.cols) / 2 - (x_c) * 10;
-// y_i = (campus_map.rows) / 2 - (y_c) * 10;
-//}
 
 int main(int argc, char **argv)
 {
@@ -74,9 +57,9 @@ int main(int argc, char **argv)
   string path = "/home/user/lidar_data/2022_07_02/2022_07_02_15_22_25/pandar_40/pandar_";
   string img_path = "/home/user/lidar_data/2022_07_02/2022_07_02_15_22_25/image/center/";
   /*** つくばで取得したデータ (2022/07/23) ***/  
-  string path3 = "/home/user/lidar_data/map_20220723_115050 S-1-4-7-11-S/sensor_20220723_115050 S-1-4-7-11-S/pandar_40/";
-  string img_path3 = "/home/user/lidar_data/map_20220723_115050 S-1-4-7-11-S/sensor_20220723_115050 S-1-4-7-11-S/image/";
-  string location_path3 = "/home/user/lidar_data/map_20220723_115050 S-1-4-7-11-S/sensor_20220723_115050 S-1-4-7-11-S/location/location.csv";
+  string path3 = "/home/user/lidar_data/map_20220723_121659 S-4-5-6-10-9-15-14-13-12-11-S/sensor_20220723_121659 S-4-5-6-10-9-15-14-13-12-11-S/pandar_40/";
+  string img_path3 = "/home/user/lidar_data/map_20220723_121659 S-4-5-6-10-9-15-14-13-12-11-S/sensor_20220723_121659 S-4-5-6-10-9-15-14-13-12-11-S/image/";
+  string location_path3 = "/home/user/lidar_data/map_20220723_121659 S-4-5-6-10-9-15-14-13-12-11-S/sensor_20220723_121659 S-4-5-6-10-9-15-14-13-12-11-S/location/location.csv";
   /*** locationの読み込み (１行目飛ばす) ***/
   ifstream location_file(location_path3);
   getline(location_file, location_str);
@@ -90,7 +73,7 @@ int main(int argc, char **argv)
   while (location_file)
   {
     cv::Mat p_c(H_i, W_i, CV_8UC3);     //　点群画像
-    cv::Mat dst_hsv(H_i, W_i, CV_8UC3); // image画像
+    // cv::Mat dst_hsv(H_i, W_i, CV_8UC3); 
     cv::Mat dst_rf(H_i, W_i, CV_8UC3);  // 芝生判定画像
     /*** 点群画像とimg画像の作成 ***/
     for (int x = 0; x < p_c.cols; x++)
@@ -98,7 +81,7 @@ int main(int argc, char **argv)
       for (int y = 0; y < p_c.rows; y++)
       {
         p_c.at<cv::Vec3b>(y, x) = 0;
-        dst_hsv.at<cv::Vec3b>(y, x) = 0;
+        // dst_hsv.at<cv::Vec3b>(y, x) = 0;
       }
     }
     /*** 点群画像の読み込み ***/
@@ -145,41 +128,73 @@ int main(int argc, char **argv)
         j = -(x / i_a) + (X_max / i_a);
         i = -(y / j_b) + (Y_max / j_b);
         // k = (255 * z + 255) / 2;
-        k = 120 * b / 100;
+        // k = 120 * b / 10;
+        double h = - (1.5* b) + 150;
+        // cout << "h: " << h << endl;
         if (0 <= i && i < W_i && 0 <= j && j < H_i && z <= -1 && b <= 5)
         {
-          /*** 画像に描画する ***/
+        /*** 画像に描画する ***/
           p_c.at<cv::Vec3b>(j, i)[0] = 120;
           p_c.at<cv::Vec3b>(j, i)[1] = 255;
           p_c.at<cv::Vec3b>(j, i)[2] = 255;
-          //cout<< i << "," << j << endl;
+        //   //cout<< i << "," << j << endl;
         }
-        else if (x * x + y * y < range * range && z <= 0.15 && b > 45)
+        // else if (x * x + y * y < range * range && z <= 0.15 && b > 45)
+        // {
+        //   dst_rf.at<cv::Vec3b>(j, i)[0] = 240;
+        //   dst_rf.at<cv::Vec3b>(j, i)[1] = 255;
+        //   dst_rf.at<cv::Vec3b>(j, i)[2] = 255;
+        // }
+         else if (x * x + y * y < range * range && z <= 0.15 && b > 5)
+         {
+           p_c.at<cv::Vec3b>(j, i)[0] = 240;
+           p_c.at<cv::Vec3b>(j, i)[1] = 255;
+           p_c.at<cv::Vec3b>(j, i)[2] = 255;
+         }
+        if (x * x + y * y < Range_max * Range_max && x * x + y * y > Range_min * Range_min && 0 <= i && i < W_i && 0 <= j && j < H_i && z <= 0.20)
         {
-          dst_rf.at<cv::Vec3b>(j, i)[0] = 240;
-          dst_rf.at<cv::Vec3b>(j, i)[1] = 255;
-          dst_rf.at<cv::Vec3b>(j, i)[2] = 255;
-        }
-        else if (x * x + y * y < range * range && z <= 0.15 && b > 5)
-        {
-          p_c.at<cv::Vec3b>(j, i)[0] = 240;
-          p_c.at<cv::Vec3b>(j, i)[1] = 255;
-          p_c.at<cv::Vec3b>(j, i)[2] = 255;
-        }
-        if (x * x + y * y < Range_max * Range_max && x * x + y * y > Range_min * Range_min && 0 <= i && i < W_i && 0 <= j && j < H_i && z <= 0.20 && b > 45)
-        {
-          /*** 画像に描画する ***/
-          dst_rf.at<cv::Vec3b>(j, i)[0] = 120 - k;
-          dst_rf.at<cv::Vec3b>(j, i)[1] = 255;
-          dst_rf.at<cv::Vec3b>(j, i)[2] = 255;
-          /*** マップに描画 ***/
-          // campus_map.at<cv::Vec3b>(y_i, x_i)[0] = 255;
-          // campus_map.at<cv::Vec3b>(y_i, x_i)[1] = 0;
-          // campus_map.at<cv::Vec3b>(y_i, x_i)[2] = 0;
-          tsukuba_map.at<cv::Vec3b>(y_i, x_i)[0] = 120 - k;
-          tsukuba_map.at<cv::Vec3b>(y_i, x_i)[1] = 0;
+         /*** 画像に描画する ***/
+         // dst_rf.at<cv::Vec3b>(j, i)[0] = 120 - k;
+         // dst_rf.at<cv::Vec3b>(j, i)[1] = 255;
+         // dst_rf.at<cv::Vec3b>(j, i)[2] = 255;
+         /*** マップに描画 ***/
+         // campus_map.at<cv::Vec3b>(y_i, x_i)[0] = 255;
+         // campus_map.at<cv::Vec3b>(y_i, x_i)[1] = 0;
+         // campus_map.at<cv::Vec3b>(y_i, x_i)[2] = 0;
+         // tsukuba_map.at<cv::Vec3b>(y_i, x_i)[0] = h;     //B
+         // tsukuba_map.at<cv::Vec3b>(y_i, x_i)[1] = 255;   //G
+         // tsukuba_map.at<cv::Vec3b>(y_i, x_i)[2] = 255;   //R
+         if (h < 37.5)
+         {
+          tsukuba_map.at<cv::Vec3b>(y_i, x_i)[0] = 0;
+          tsukuba_map.at<cv::Vec3b>(y_i, x_i)[1] = 6.8*h;
+          tsukuba_map.at<cv::Vec3b>(y_i, x_i)[2] = 255;
+         }
+         else if (h < 75)
+         {
+          tsukuba_map.at<cv::Vec3b>(y_i, x_i)[0] = 0;
+          tsukuba_map.at<cv::Vec3b>(y_i, x_i)[1] = 255;
+          tsukuba_map.at<cv::Vec3b>(y_i, x_i)[2] = - (6,8*h) + 510;
+         }
+         else if (h < 112.5)
+         {
+          tsukuba_map.at<cv::Vec3b>(y_i, x_i)[0] = (6,8*h) - 510;
+          tsukuba_map.at<cv::Vec3b>(y_i, x_i)[1] = 255;
           tsukuba_map.at<cv::Vec3b>(y_i, x_i)[2] = 0;
+         }
+         else if (h < 150)
+         {
+          tsukuba_map.at<cv::Vec3b>(y_i, x_i)[0] = 255;
+          tsukuba_map.at<cv::Vec3b>(y_i, x_i)[1] = -(6.8*h) + 1020;
+          tsukuba_map.at<cv::Vec3b>(y_i, x_i)[2] = 0;
+         }
         }
+        //  if (x * x + y * y < Range_max * Range_max && x * x + y * y > Range_min * Range_min && 0 <= i && i < W_i && 0 <= j && j < H_i && z <= 0.20 && 4.9 < b && b < 5.0)
+        //  {
+        //    tsukuba_map.at<cv::Vec3b>(y_i, x_i)[0] = 255;
+        //    tsukuba_map.at<cv::Vec3b>(y_i, x_i)[1] = 0;
+        //    tsukuba_map.at<cv::Vec3b>(y_i, x_i)[2] = 0;
+        //   } 
       }
     }
     /*** img画像のデータ読み込み ***/
@@ -206,10 +221,10 @@ int main(int argc, char **argv)
     cv::cvtColor(p_c, p_c, cv::COLOR_HSV2BGR);
     // cv::namedWindow("preview1");
     // cv::namedWindow("preview2");
-    resize(p_c, p_c, cv::Size(), 0.8, 0.8);
-    resize(dst_rf, dst_rf, cv::Size(), 0.8, 0.8);
+    // resize(p_c, p_c, cv::Size(), 0.8, 0.8);
+    // resize(dst_rf, dst_rf, cv::Size(), 0.8, 0.8);
     resize(tsukuba_map, resized_map, cv::Size(), 0.05, 0.05);
-    cv::imshow("桐生キャンパス", resized_map);
+    cv::imshow("つくば", resized_map);
     cv::imshow("点群画像", p_c);
     // cv::imshow("芝生画像", img);
     /*** 0.5秒ごとに画像切り替わり ***/
@@ -218,6 +233,6 @@ int main(int argc, char **argv)
     //file_cnt4++;
     // resize_cnt++;
   }
-  cv::imwrite("sample_tsukuba_ref_map.png", tsukuba_map);
+  cv::imwrite("sample_tsukuba_ref_map5.png", tsukuba_map);
   return 0;
 }
