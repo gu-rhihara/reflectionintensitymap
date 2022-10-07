@@ -53,6 +53,7 @@ CMAKE_BINARY_DIR = /home/user/lidar_data/reflectionintensitymap/build
 # Directory level rules for the build root directory
 
 # The main recursive "all" target.
+all: CMakeFiles/lawn_decision.dir/all
 all: CMakeFiles/reflection_intensity_map.dir/all
 
 .PHONY : all
@@ -63,9 +64,37 @@ preinstall:
 .PHONY : preinstall
 
 # The main recursive "clean" target.
+clean: CMakeFiles/lawn_decision.dir/clean
 clean: CMakeFiles/reflection_intensity_map.dir/clean
 
 .PHONY : clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/lawn_decision.dir
+
+# All Build rule for target.
+CMakeFiles/lawn_decision.dir/all:
+	$(MAKE) -f CMakeFiles/lawn_decision.dir/build.make CMakeFiles/lawn_decision.dir/depend
+	$(MAKE) -f CMakeFiles/lawn_decision.dir/build.make CMakeFiles/lawn_decision.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/user/lidar_data/reflectionintensitymap/build/CMakeFiles --progress-num=1,2 "Built target lawn_decision"
+.PHONY : CMakeFiles/lawn_decision.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/lawn_decision.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/user/lidar_data/reflectionintensitymap/build/CMakeFiles 2
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/lawn_decision.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/user/lidar_data/reflectionintensitymap/build/CMakeFiles 0
+.PHONY : CMakeFiles/lawn_decision.dir/rule
+
+# Convenience name for target.
+lawn_decision: CMakeFiles/lawn_decision.dir/rule
+
+.PHONY : lawn_decision
+
+# clean rule for target.
+CMakeFiles/lawn_decision.dir/clean:
+	$(MAKE) -f CMakeFiles/lawn_decision.dir/build.make CMakeFiles/lawn_decision.dir/clean
+.PHONY : CMakeFiles/lawn_decision.dir/clean
 
 #=============================================================================
 # Target rules for target CMakeFiles/reflection_intensity_map.dir
@@ -74,7 +103,7 @@ clean: CMakeFiles/reflection_intensity_map.dir/clean
 CMakeFiles/reflection_intensity_map.dir/all:
 	$(MAKE) -f CMakeFiles/reflection_intensity_map.dir/build.make CMakeFiles/reflection_intensity_map.dir/depend
 	$(MAKE) -f CMakeFiles/reflection_intensity_map.dir/build.make CMakeFiles/reflection_intensity_map.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/user/lidar_data/reflectionintensitymap/build/CMakeFiles --progress-num=1,2 "Built target reflection_intensity_map"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/user/lidar_data/reflectionintensitymap/build/CMakeFiles --progress-num=3,4 "Built target reflection_intensity_map"
 .PHONY : CMakeFiles/reflection_intensity_map.dir/all
 
 # Build rule for subdir invocation for target.

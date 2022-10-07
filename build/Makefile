@@ -111,6 +111,19 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named lawn_decision
+
+# Build rule for target.
+lawn_decision: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 lawn_decision
+.PHONY : lawn_decision
+
+# fast build rule for target.
+lawn_decision/fast:
+	$(MAKE) -f CMakeFiles/lawn_decision.dir/build.make CMakeFiles/lawn_decision.dir/build
+.PHONY : lawn_decision/fast
+
+#=============================================================================
 # Target rules for targets named reflection_intensity_map
 
 # Build rule for target.
@@ -122,6 +135,33 @@ reflection_intensity_map: cmake_check_build_system
 reflection_intensity_map/fast:
 	$(MAKE) -f CMakeFiles/reflection_intensity_map.dir/build.make CMakeFiles/reflection_intensity_map.dir/build
 .PHONY : reflection_intensity_map/fast
+
+src/lawn_decision.o: src/lawn_decision.cpp.o
+
+.PHONY : src/lawn_decision.o
+
+# target to build an object file
+src/lawn_decision.cpp.o:
+	$(MAKE) -f CMakeFiles/lawn_decision.dir/build.make CMakeFiles/lawn_decision.dir/src/lawn_decision.cpp.o
+.PHONY : src/lawn_decision.cpp.o
+
+src/lawn_decision.i: src/lawn_decision.cpp.i
+
+.PHONY : src/lawn_decision.i
+
+# target to preprocess a source file
+src/lawn_decision.cpp.i:
+	$(MAKE) -f CMakeFiles/lawn_decision.dir/build.make CMakeFiles/lawn_decision.dir/src/lawn_decision.cpp.i
+.PHONY : src/lawn_decision.cpp.i
+
+src/lawn_decision.s: src/lawn_decision.cpp.s
+
+.PHONY : src/lawn_decision.s
+
+# target to generate assembly for a file
+src/lawn_decision.cpp.s:
+	$(MAKE) -f CMakeFiles/lawn_decision.dir/build.make CMakeFiles/lawn_decision.dir/src/lawn_decision.cpp.s
+.PHONY : src/lawn_decision.cpp.s
 
 src/reflection_intensity_map.o: src/reflection_intensity_map.cpp.o
 
@@ -157,8 +197,12 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... edit_cache"
+	@echo "... lawn_decision"
 	@echo "... rebuild_cache"
 	@echo "... reflection_intensity_map"
+	@echo "... src/lawn_decision.o"
+	@echo "... src/lawn_decision.i"
+	@echo "... src/lawn_decision.s"
 	@echo "... src/reflection_intensity_map.o"
 	@echo "... src/reflection_intensity_map.i"
 	@echo "... src/reflection_intensity_map.s"

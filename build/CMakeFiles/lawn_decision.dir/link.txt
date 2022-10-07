@@ -1,0 +1,1 @@
+/usr/bin/c++  -std=c++14   -rdynamic CMakeFiles/lawn_decision.dir/src/lawn_decision.cpp.o  -o lawn_decision   -L/usr/local/lib  -Wl,-rpath,/usr/local/lib -lopencv_core -lopencv_highgui -lopencv_imgcodecs -lopencv_imgproc -lopencv_videoio /usr/lib/x86_64-linux-gnu/libboost_filesystem.so.1.71.0 /usr/lib/x86_64-linux-gnu/libboost_system.so.1.71.0 
