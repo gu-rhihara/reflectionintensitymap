@@ -69,7 +69,7 @@ int main(int argc, char **argv)
   string img_path5 = "/home/user/lidar_data/map_20220723_130522 S-7-8-13-14-15-21-22-J-28-27-26-20-21-14-13-12-11-S/sensor_20220723_130522 S-7-8-13-14-15-21-22-J-28-27-26-20-21-14-13-12-11-S/image/";
   string location_path5 = "/home/user/lidar_data/map_20220723_130522 S-7-8-13-14-15-21-22-J-28-27-26-20-21-14-13-12-11-S/sensor_20220723_130522 S-7-8-13-14-15-21-22-J-28-27-26-20-21-14-13-12-11-S/location/location.csv";
   /*** locationの読み込み (１行目飛ばす) ***/
-  ifstream location_file(location_path5);
+  ifstream location_file(location_path3);
   getline(location_file, location_str);
   /*** resize count 1 ***/
   int resize_cnt = 0;
@@ -97,7 +97,7 @@ int main(int argc, char **argv)
     /*** 点群画像の読み込み ***/
     char num_str1[10];
     snprintf(num_str1, sizeof(num_str1), "%06d", file_cnt1);
-    ifstream pc_ifs(path5 + num_str1 + ".csv");
+    ifstream pc_ifs(path3 + num_str1 + ".csv");
     getline(pc_ifs, line);    //入力文字列を取得しlineに格納
     stringstream line2(line); // stringstream型にする
     file_cnt1++;
@@ -133,11 +133,11 @@ int main(int argc, char **argv)
       y_i = (double)(tsukuba_map.cols / 2) - (x_c / res);
 
       // cout << "x_i: " << x_i << ", " << "y_i: " << y_i << endl;
-      if (x * x + y * y < range * range )
+      if (x * x + y * y < range * range && b < 30)
       {
         j = -(x / i_a) + (X_max / i_a);
         i = -(y / j_b) + (Y_max / j_b);
-        double h = -(1.5 * b) + 150;
+        double h = -(5 * b) + 150;
         // cout << "h: " << h << endl;
         // if (x * x + y * y < Range_max * Range_max && x * x + y * y > Range_min * Range_min && 0 <= i && i < W_i && 0 <= j && j < H_i && z <= 0.20)
         // {
@@ -233,7 +233,7 @@ int main(int argc, char **argv)
     /*** img画像のデータ読み込み ***/
     char num_str2[10];
     snprintf(num_str2, sizeof(num_str2), "%06d", file_cnt2);
-    cv::Mat img = cv::imread(img_path5 + num_str2 + ".png");
+    cv::Mat img = cv::imread(img_path3 + num_str2 + ".png");
     // cout << "num: " <<num_str2 << ", cnt: " << file_cnt2 <<  endl;
     file_cnt2++;
 
@@ -268,7 +268,7 @@ int main(int argc, char **argv)
     // file_cnt4++;
     //  resize_cnt++;
   }
-  cv::imwrite("S-11-12-20-26-30-31-27-28-I-22-21-14-13-12-11-S.png", tsukuba_map);
+  cv::imwrite("S-11-12-20-26-30-31-27-28-I-22-21-14-13-12-11-S2.png", tsukuba_map);
   //cv::imwrite("boundary_20.png", dst);
   return 0;
 }
