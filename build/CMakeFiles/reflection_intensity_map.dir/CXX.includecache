@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/home/user/lidar_data/reflectionintensitymap/src/reflection_intensity_map.cpp
+/home/user/reflectionintensitymap/src/reflection_intensity_map.cpp
 fstream
 -
 iostream
