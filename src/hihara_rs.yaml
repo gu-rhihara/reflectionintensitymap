@@ -1,0 +1,208 @@
+### locator
+locator:
+  topic:
+    corrected_pose : "/locator/corrected_pose"
+    scan_match_img : "/locator/scanmatch_img"
+  service:
+    reset_pose : "/locator/reset_pose"
+
+### locator set
+locator_set:
+  service:
+    set_active: "/rs_locator_set_pose/set_active"
+  param:
+  ###桐生キャンパスマップ
+    # map_img        : "map/campus/campus_map.png"
+    # map_img        : "map/kiryu_boundary_gray.png"
+    # map_img        : "map/kiryu_boundary_color.png"
+  ###つくばマップ
+    # map_img        : "map/tsukuba/tsukuba_map.png"
+      map_img        : "map/tsukuba_boundary_gray.png"
+      map_img        : "map/tsukuba_boundary_color.png"
+    meter_per_pixel: 0.1
+
+### path planning
+path_planning:
+  topic:
+    target_odom : "/rs_path_planning/target_odom"
+    task_num    : "/rs_path_planning/task_num"
+  param:
+    task_list: [
+      "WAYPOINT_SET: rs_route/waypoint.csv",
+      "WAYPOINT_SET: rs_route/waypoint2.csv",
+      "WAYPOINT_SET: rs_route/waypoint3.csv",
+      "WAYPOINT_SET: rs_route/waypoint4.csv"
+      # "SET_WAYPOINT: rs_route/waypoint_dummy1.csv",
+      # "SET_WAYPOINT: rs_route/waypoint_dummy2.csv",
+      # "MANNEQUIN_SEARCH: rs_route/waypoint_dummy3.csv",
+      # "PATH_ROUTE_SEARCH: 1,2,3,4,5",
+      # "PATH_ROUTE_WAYPOINT_SET: rs_route/route/"
+    ]
+
+### path following
+path_following:
+  topic:
+    is_active: "/rs_path_following/is_active"
+  service:
+    set_active: "/rs_path_following/set_active"
+    set_speed_limit: "/rs_path_following/set_speed_limit"
+  param:
+    linear:
+      gain_p           : 2.0
+      gain_i           : 0.0
+      gain_d           : 1.0
+      manipulate_limit : 1.0
+      accelerate_limit : 0.2
+      brake_limit      : -1.0
+    angular:
+      gain_p           : 2.0
+      gain_i           : 0.0
+      gain_d           : 1.0
+      manipulate_limit : 1.0
+      accelerate_limit : 0.2
+      brake_limit      : -1.0
+    allow_error               : 0.05
+    forced_turn_angular_error : 45.0 #degで指定
+    emergency_stop_distance   : 0.01
+
+### waypoint manager
+waypoint_manager:
+  topic:
+    waypoint : "/rs_waypoint_manager/waypoint"
+    file     : "/rs_waypoint_manager/waypoint_file"
+    is_active: "/rs_waypoint_manager/is_active"
+    waypoint_img: "/rs_way_point_manager/way_point_img"
+  service:
+    set_waypoints  : "/rs_waypoint_manager/set_waypoints"
+    reset_waypoints: "/rs_waypoint_manager/reset_waypoints"
+    set_active     : "/rs_waypoint_manager/set_active"
+
+obstacle_detector:
+  topic:
+    obstacle_infos : "/rs_obstacle_detector/obstacle_infos"
+    obstacles_img  : "/rs_obstacle_detector/obstacles_image" 
+
+mannequin_detector:
+  topic:
+    is_active : "/rs_mannequin_detector/is_active"
+    infos     : "/rs_mannequin_detector/mannequin_infos"
+  service:
+    set_active : "/rs_mannequin_detector/set_active"
+
+road_sign_detector:
+  topic:
+    is_active : "/rs_road_sign_detector/is_active"
+    infos     : "/rs_road_sign_detector/road_sign_infos"
+  service:
+    set_active : "/rs_road_sign_detector/set_active"
+
+stoplight_detector:
+  topic:
+    is_active : "/rs_stoplight_detector/is_active"
+    infos     : "/rs_stoplight_detector/stoplight_infos"
+  service:
+    set_active : "/rs_stoplight_detector/set_active"
+
+### logger
+logger:
+  topic:
+    is_active : "/rs_logger/is_active"
+  service:
+    set_active   : "/rs_logger/set_active"
+    trigger_save : "/rs_logger/trigger_save" 
+  param:
+    is_active : false
+    freq      : 10
+    trigger : 
+      distance : 0.5    # [m]
+      yaw      : 10.0   # [deg]
+    save_param:
+      save_path: "rs_log/"
+      img:
+        dir  : "image/"
+        flag : true
+      high_point_cloud:
+        dir  : "pandar_40/"
+        flag : true
+      mid_point_cloud:
+        dir  : "mid_pandar_40/"
+        flag : true
+      low_point_cloud:
+        dir  : "low_pandar_40/"
+        flag : true
+      sonar:
+        dir  : "mercury_sonar/"
+        flag : true
+      robot_state:
+        dir  : "mercury_blue/"
+        flag : true
+      location:
+        dir  : "location/"
+        flag : true
+
+### monitor
+monitor:
+  param:
+    map_view_size       : 50.0
+
+### mercury
+mercury:
+  topic:
+    state : "/mercury/state"
+    imu   : "/mercury/imu"
+    pose  : "/mercury/pose"
+    cmd_robot_vel : "/mercury/cmd_robot_vel"
+
+### mercury run
+mercury_run:
+  topic:
+    is_active : "/mercury_run/is_active"
+  service:
+    set_active : "/mercury_run/set_active"
+
+### センサ
+sensor:
+  topic:
+    camera_img          : "/camera1/image"
+    top_lidar_points    : "/c32/points"
+    middle_lidar_points : "/mrs1000/points"
+    bottom_lidar_points : "/tim551/points"
+    sonar_ranges        : "/mercury_sonar/ranges"
+    joy_state           : "/joystick/state"
+    joy_is_connected    : "/joystick/is_connected"
+
+### points processor
+points_proc:
+  topic:
+    points                 : "/rs_points_processor/points"
+    points_near            : "/rs_points_processor/points_near"
+    depth_img              : "/rs_points_processor/depth_img"
+    ref_img                : "/rs_points_processor/ref_img"
+    top_points_received    : "/rs_points_processor/top_lidar_active"
+    middle_points_received : "/rs_points_processor/middle_lidar_active"
+    bottom_points_received : "/rs_points_processor/bottom_lidar_active"
+  param:
+    points_range      : 130.0
+    points_near_range : 10.0
+    imu:
+      offset:
+        x: 0.0
+        y: 0.0
+        z: 0.5
+
+    lidar:
+      offset:
+        x: 0.0
+        y: 0.0
+        z: 0.95
+      depth_range: 200.0
+      horizontal:
+        min: -180.0
+        max:  180.0
+        resolution: 0.4
+      vertical:
+        min: -16.0
+        # max: 15.0         # c32
+        # resolution: 1.0   # c32
+        max: 7.0            # pandar_40
+        resolution: 0.33    # pandar_40
