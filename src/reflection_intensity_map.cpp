@@ -57,7 +57,6 @@ int main(int argc, char **argv)
   // string path = "/home/user/lidar_data/2022_07_02/2022_07_02_15_22_25/pandar_40/pandar_";
   // string img_path = "/home/user/lidar_data/2022_07_02/2022_07_02_15_22_25/image/center/";
   /*** つくばで取得したデータ (2022/07/23) ***/
-<<<<<<< HEAD
   string path3 = "/home/user/lidar_data/map_20220723_121659 S-4-5-6-10-9-15-14-13-12-11-S/sensor_20220723_121659 S-4-5-6-10-9-15-14-13-12-11-S/pandar_40/";
   string img_path3 = "/home/user/lidar_data/map_20220723_121659 S-4-5-6-10-9-15-14-13-12-11-S/sensor_20220723_121659 S-4-5-6-10-9-15-14-13-12-11-S/image/";
   string location_path3 = "/home/user/lidar_data/map_20220723_121659 S-4-5-6-10-9-15-14-13-12-11-S/sensor_20220723_121659 S-4-5-6-10-9-15-14-13-12-11-S/location/location.csv";
@@ -75,7 +74,6 @@ int main(int argc, char **argv)
   string location_path7 = "/home/user/lidar_data/map_20220723_115050 S-1-4-7-11-S/sensor_20220723_115050 S-1-4-7-11-S/location/location.csv";
   /*** locationの読み込み (１行目飛ばす) ***/
   ifstream location_file(location_path3);
-=======
   string path3 = "/home/rhihara/reflectionintensitymap/log_file/map_20220723_121659 S-4-5-6-10-9-15-14-13-12-11-S/sensor_20220723_121659 S-4-5-6-10-9-15-14-13-12-11-S/pandar_40/";
   string img_path3 = "/home/rhihara/reflectionintensitymap/log_file/map_20220723_121659 S-4-5-6-10-9-15-14-13-12-11-S/sensor_20220723_121659 S-4-5-6-10-9-15-14-13-12-11-S/image/";
   string location_path3 = "/home/rhihara/reflectionintensitymap/log_file/map_20220723_121659 S-4-5-6-10-9-15-14-13-12-11-S/sensor_20220723_121659 S-4-5-6-10-9-15-14-13-12-11-S/location/location.csv";
@@ -109,7 +107,7 @@ int main(int argc, char **argv)
   string location_path10 = "/home/rhihara/reflectionintensitymap/log_file/sensor_20220917_134935/sensor_20220917_134935/location/location.csv";
   /*** locationの読み込み (１行目飛ばす) ***/
   ifstream location_file(location_path9);
->>>>>>> dca779079ece452eae101a06b001cd1fdde609a8
+
   getline(location_file, location_str);
   /*** resize count 1 ***/
   int resize_cnt = 0;
@@ -118,11 +116,8 @@ int main(int argc, char **argv)
   cv::Mat resized_map1;
   cv::Mat resized_map2;
   /*** つくばのマップ読み込み ***/
-<<<<<<< HEAD
   cv::Mat tsukuba_map = cv::imread("/home/user/Downloads/tsukuba5.pcd.png");
-=======
   cv::Mat tsukuba_map = cv::imread("/home/rhihara/reflectionintensitymap/build/sensor_20221023_123902_color.png");
->>>>>>> dca779079ece452eae101a06b001cd1fdde609a8
   cv::Mat dst(15001, 15001, CV_8UC3);
   while (location_file)
   {
@@ -141,11 +136,8 @@ int main(int argc, char **argv)
     /*** 点群画像の読み込み ***/
     char num_str1[10];
     snprintf(num_str1, sizeof(num_str1), "%06d", file_cnt1);
-<<<<<<< HEAD
     ifstream pc_ifs(path3 + num_str1 + ".csv");
-=======
     ifstream pc_ifs(path9+ num_str1 + ".csv");
->>>>>>> dca779079ece452eae101a06b001cd1fdde609a8
     getline(pc_ifs, line);    //入力文字列を取得しlineに格納
     stringstream line2(line); // stringstream型にする
     file_cnt1++;
@@ -281,13 +273,10 @@ int main(int argc, char **argv)
     /*** img画像のデータ読み込み ***/
     char num_str2[10];
     snprintf(num_str2, sizeof(num_str2), "%06d", file_cnt2);
-<<<<<<< HEAD
     cv::Mat img = cv::imread(img_path3 + num_str2 + ".png");
     //cout << "num: " <<num_str2 << ", cnt: " << file_cnt2 <<  endl;
-=======
     cv::Mat img = cv::imread(img_path9+ num_str2 + ".png");
     // cout << "num: " <<num_str2 << ", cnt: " << file_cnt2 <<  endl;
->>>>>>> dca779079ece452eae101a06b001cd1fdde609a8
     file_cnt2++;
 
     /*** 拡大画像の表示 ***/
@@ -314,22 +303,16 @@ int main(int argc, char **argv)
     cv::imshow("つくば", resized_map1);
     //cv::imshow("境界線", resized_map2);
     // cv::imshow("点群画像", p_c);
-<<<<<<< HEAD
     cv::imshow("芝生画像", img);
-=======
     //cv::imshow("芝生画像", img);
->>>>>>> dca779079ece452eae101a06b001cd1fdde609a8
     /*** 0.5秒ごとに画像切り替わり ***/
     cv::waitKey(1);
     // cout << file_cnt4 << endl;
     // file_cnt4++;
     //  resize_cnt++;
   }
-<<<<<<< HEAD
   cv::imwrite("map_20220723_115050 S-1-4-7-11-S.png", tsukuba_map);
-=======
   cv::imwrite("自律走行_sensor_20220917_134935.png", tsukuba_map);
->>>>>>> dca779079ece452eae101a06b001cd1fdde609a8
   //cv::imwrite("boundary_20.png", dst);
   return 0;
 }
