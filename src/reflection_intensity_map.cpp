@@ -22,7 +22,7 @@ int main(int argc, char **argv)
 #endif
 
   /*** 使用する定数 ***/
-  const int range = 5;
+  const int range = 50;
   constexpr int X_min = -range;
   constexpr int X_max = range;
   constexpr int Y_min = -range;
@@ -37,7 +37,7 @@ int main(int argc, char **argv)
   constexpr double i_a = (double)W_x / W_i;
   constexpr double j_b = (double)H_y / H_i;
   const double Range_min = 3.5;
-  const double Range_max = 5;
+  const double Range_max = 100;
 
   /*** getline関数を用いてデータを取得する ***/
   string line, s, pc_str, location_str;
@@ -47,20 +47,17 @@ int main(int argc, char **argv)
   int file_cnt4 = 0;
 
   /*** 桐生キャンパスで取得したデータ (2021/12/03) ***/
-  string path1 = "/home/user/lidar_data/12_03/2021_12_03_11_04_04/pandar_40/pandar_";
-  string img_path1 = "/home/user/lidar_data/12_03/2021_12_03_11_04_04/image/center/";
+  // string path1 = "/home/user/lidar_data/12_03/2021_12_03_11_04_04/pandar_40/pandar_";
+  // string img_path1 = "/home/user/lidar_data/12_03/2021_12_03_11_04_04/image/center/";
   /*** 桐生キャンパスで取得したデータ (2022/08/01) ***/
-  string path2 = "/home/user/lidar_data/map_20220801_133836_S-1-2-3-S/pandar_40/";
-  string img_path2 = "/home/user/lidar_data/map_20220801_133836_S-1-2-3-S/image/";
-  string location_path2 = "/home/user/lidar_data/map_20220801_133836_S-1-2-3-S/location/location.csv";
-  /*** 桐生キャンパスで取得したデータ (2022/08/01) ***/
-  string path6 = "/home/user/lidar_data/map_20220801_135140_S-3-4-5-9-10-11-7-6-8-4-3-S/pandar_40/";
-  string img_path6 = "/home/user/lidar_data/map_20220801_135140_S-3-4-5-9-10-11-7-6-8-4-3-S/image/";
-  string location_path6 = "/home/user/lidar_data/map_20220801_135140_S-3-4-5-9-10-11-7-6-8-4-3-S/location/location.csv";
+  // string path2 = "/home/user/lidar_data/map_20220801_133836_S-1-2-3-S/pandar_40/";
+  // string img_path2 = "/home/user/lidar_data/map_20220801_133836_S-1-2-3-S/image/";
+  // string location_path2 = "/home/user/lidar_data/map_20220801_133836_S-1-2-3-S/location/location.csv";
   /*** つくばで取得したデータ (2022/07/02) ***/
-  string path = "/home/user/lidar_data/2022_07_02/2022_07_02_15_22_25/pandar_40/pandar_";
-  string img_path = "/home/user/lidar_data/2022_07_02/2022_07_02_15_22_25/image/center/";
+  // string path = "/home/user/lidar_data/2022_07_02/2022_07_02_15_22_25/pandar_40/pandar_";
+  // string img_path = "/home/user/lidar_data/2022_07_02/2022_07_02_15_22_25/image/center/";
   /*** つくばで取得したデータ (2022/07/23) ***/
+<<<<<<< HEAD
   string path3 = "/home/user/lidar_data/map_20220723_121659 S-4-5-6-10-9-15-14-13-12-11-S/sensor_20220723_121659 S-4-5-6-10-9-15-14-13-12-11-S/pandar_40/";
   string img_path3 = "/home/user/lidar_data/map_20220723_121659 S-4-5-6-10-9-15-14-13-12-11-S/sensor_20220723_121659 S-4-5-6-10-9-15-14-13-12-11-S/image/";
   string location_path3 = "/home/user/lidar_data/map_20220723_121659 S-4-5-6-10-9-15-14-13-12-11-S/sensor_20220723_121659 S-4-5-6-10-9-15-14-13-12-11-S/location/location.csv";
@@ -78,15 +75,54 @@ int main(int argc, char **argv)
   string location_path7 = "/home/user/lidar_data/map_20220723_115050 S-1-4-7-11-S/sensor_20220723_115050 S-1-4-7-11-S/location/location.csv";
   /*** locationの読み込み (１行目飛ばす) ***/
   ifstream location_file(location_path3);
+=======
+  string path3 = "/home/rhihara/reflectionintensitymap/log_file/map_20220723_121659 S-4-5-6-10-9-15-14-13-12-11-S/sensor_20220723_121659 S-4-5-6-10-9-15-14-13-12-11-S/pandar_40/";
+  string img_path3 = "/home/rhihara/reflectionintensitymap/log_file/map_20220723_121659 S-4-5-6-10-9-15-14-13-12-11-S/sensor_20220723_121659 S-4-5-6-10-9-15-14-13-12-11-S/image/";
+  string location_path3 = "/home/rhihara/reflectionintensitymap/log_file/map_20220723_121659 S-4-5-6-10-9-15-14-13-12-11-S/sensor_20220723_121659 S-4-5-6-10-9-15-14-13-12-11-S/location/location.csv";
+  /*** つくばで取得したデータ (2022/07/23) ***/
+  string path4 = "/home/rhihara/reflectionintensitymap/log_file/map_20220723_124446 S-11-12-20-26-30-31-27-28-I-22-21-14-13-12-11-S/sensor_20220723_124446 S-11-12-20-26-30-31-27-28-I-22-21-14-13-12-11-S/pandar_40/";
+  string img_path4 = "/home/rhihara/reflectionintensitymap/log_file/map_20220723_124446 S-11-12-20-26-30-31-27-28-I-22-21-14-13-12-11-S/sensor_20220723_124446 S-11-12-20-26-30-31-27-28-I-22-21-14-13-12-11-S/image/";
+  string location_path4 = "/home/rhihara/reflectionintensitymap/log_file/map_20220723_124446 S-11-12-20-26-30-31-27-28-I-22-21-14-13-12-11-S/sensor_20220723_124446 S-11-12-20-26-30-31-27-28-I-22-21-14-13-12-11-S/location/location.csv";
+   /*** つくばで取得したデータ (2022/07/23) ***/
+  string path5 = "/home/rhihara/reflectionintensitymap/log_file/map_20220723_130522 S-7-8-13-14-15-21-22-J-28-27-26-20-21-14-13-12-11-S/sensor_20220723_130522 S-7-8-13-14-15-21-22-J-28-27-26-20-21-14-13-12-11-S/pandar_40/";
+  string img_path5 = "/home/rhihara/reflectionintensitymap/log_file/map_20220723_130522 S-7-8-13-14-15-21-22-J-28-27-26-20-21-14-13-12-11-S/sensor_20220723_130522 S-7-8-13-14-15-21-22-J-28-27-26-20-21-14-13-12-11-S/image/";
+  string location_path5 = "/home/rhihara/reflectionintensitymap/log_file/map_20220723_130522 S-7-8-13-14-15-21-22-J-28-27-26-20-21-14-13-12-11-S/sensor_20220723_130522 S-7-8-13-14-15-21-22-J-28-27-26-20-21-14-13-12-11-S/location/location.csv";
+   /*** つくばで取得したデータ (2022/10/22) ***/
+  string path6 = "/home/rhihara/reflectionintensitymap/log_file/sensor_20221022_140739/pandar_40/";
+  string img_path6 = "/home/rhihara/reflectionintensitymap/log_file/sensor_20221022_140739/image/";
+  string location_path6 = "/home/rhihara/reflectionintensitymap/log_file/sensor_20221022_140739/location/location.csv";
+     /*** つくばで取得したデータ (2022/10/22) ***/
+  string path7 = "/home/rhihara/reflectionintensitymap/log_file/sensor_20221022_152232/pandar_40/";
+  string img_path7 = "/home/rhihara/reflectionintensitymap/log_file/sensor_20221022_152232/image/";
+  string location_path7 = "/home/rhihara/reflectionintensitymap/log_file/sensor_20221022_152232/location/location.csv";
+    /*** つくばで取得したデータ (2022/10/23) ***/
+  string path8 = "/home/rhihara/reflectionintensitymap/log_file/sensor_20221023_123902/pandar_40/";
+  string img_path8 = "/home/rhihara/reflectionintensitymap/log_file/sensor_20221023_123902/image/";
+  string location_path8 = "/home/rhihara/reflectionintensitymap/log_file/sensor_20221023_123902/location/location.csv";
+    /*** つくばで取得したデータ (2022/9/17) ***/
+  string path9 = "/home/rhihara/reflectionintensitymap/log_file/sensor_20220917_134935/sensor_20220917_134935/pandar_40/";
+  string img_path9 = "/home/rhihara/reflectionintensitymap/log_file/sensor_20220917_134935/sensor_20220917_134935/image/";
+  string location_path9 = "/home/rhihara/reflectionintensitymap/log_file/sensor_20220917_134935/sensor_20220917_134935/location/location.csv";
+    /*** つくばで取得したデータ (2022/9/17) ***/
+  string path10 = "/home/rhihara/reflectionintensitymap/log_file/sensor_20220917_134935/sensor_20220917_134935/pandar_40/";
+  string img_path10 = "/home/rhihara/reflectionintensitymap/log_file/sensor_20220917_134935/sensor_20220917_134935/image/";
+  string location_path10 = "/home/rhihara/reflectionintensitymap/log_file/sensor_20220917_134935/sensor_20220917_134935/location/location.csv";
+  /*** locationの読み込み (１行目飛ばす) ***/
+  ifstream location_file(location_path9);
+>>>>>>> dca779079ece452eae101a06b001cd1fdde609a8
   getline(location_file, location_str);
   /*** resize count 1 ***/
   int resize_cnt = 0;
   /*** 桐生キャンパスのマップ読み込み ***/
-  cv::Mat campus_map = cv::imread("/home/user/Downloads/campus_map.png");
+  cv::Mat campus_map = cv::imread("/home/rhihara/Downloads/campus_map.png");
   cv::Mat resized_map1;
   cv::Mat resized_map2;
   /*** つくばのマップ読み込み ***/
+<<<<<<< HEAD
   cv::Mat tsukuba_map = cv::imread("/home/user/Downloads/tsukuba5.pcd.png");
+=======
+  cv::Mat tsukuba_map = cv::imread("/home/rhihara/reflectionintensitymap/build/sensor_20221023_123902_color.png");
+>>>>>>> dca779079ece452eae101a06b001cd1fdde609a8
   cv::Mat dst(15001, 15001, CV_8UC3);
   while (location_file)
   {
@@ -105,7 +141,11 @@ int main(int argc, char **argv)
     /*** 点群画像の読み込み ***/
     char num_str1[10];
     snprintf(num_str1, sizeof(num_str1), "%06d", file_cnt1);
+<<<<<<< HEAD
     ifstream pc_ifs(path3 + num_str1 + ".csv");
+=======
+    ifstream pc_ifs(path9+ num_str1 + ".csv");
+>>>>>>> dca779079ece452eae101a06b001cd1fdde609a8
     getline(pc_ifs, line);    //入力文字列を取得しlineに格納
     stringstream line2(line); // stringstream型にする
     file_cnt1++;
@@ -125,8 +165,8 @@ int main(int argc, char **argv)
     double x_i, y_i, res, c_r, s_r, r, x_c, y_c;
     res = 0.10;
     r = oz;
-    c_r = (double)cos(r);
-    s_r = (double)sin(r);
+    c_r = (double)cos(r) ;
+    s_r = (double)sin(r) ;
 
     /*** Lidar座標からマップ座標への変換式 ***/
     while (getline(pc_ifs, pc_str))
@@ -137,31 +177,31 @@ int main(int argc, char **argv)
       // 回転と平行移動 //
       x_c = (double)(x * c_r) - (y * s_r) + px;
       y_c = (double)(x * s_r) + (y * c_r) + py;
-      x_i = (double)(dst.rows / 2) - (y_c / res);
-      y_i = (double)(dst.cols / 2) - (x_c / res);
+      x_i = (double)(tsukuba_map.rows / 2) - (y_c / res);
+      y_i = (double)(tsukuba_map.cols / 2) - (x_c / res);
 
       // cout << "x_i: " << x_i << ", " << "y_i: " << y_i << endl;
-      if (x * x + y * y < range * range && b < 30)
+      if (x * x + y * y < range * range && b < 0.3)
       {
         j = -(x / i_a) + (X_max / i_a);
         i = -(y / j_b) + (Y_max / j_b);
-        double h = -(5 * b) + 150;
+        double h = -(500* b) + 150;
         // cout << "h: " << h << endl;
         // if (x * x + y * y < Range_max * Range_max && x * x + y * y > Range_min * Range_min && 0 <= i && i < W_i && 0 <= j && j < H_i && z <= 0.20)
-        // {
-        // /*** 画像に描画する ***/
-        // p_c.at<cv::Vec3b>(j, i)[0] = 120;
-        // p_c.at<cv::Vec3b>(j, i)[1] = 255;
-        // p_c.at<cv::Vec3b>(j, i)[2] = 255;
-        // cout<< i << "," << j << endl;
-        // }
-        //  else if (x * x + y * y < range * range && z <= 0.15 && b > 5)
-        // {
-        // p_c.at<cv::Vec3b>(j, i)[0] = 240;
-        // p_c.at<cv::Vec3b>(j, i)[1] = 255;
-        // p_c.at<cv::Vec3b>(j, i)[2] = 255;
-        // }
-        if (x * x + y * y < Range_max * Range_max && x * x + y * y > Range_min * Range_min && 0 <= i && i < W_i && 0 <= j && j < H_i && z <= 0.1)
+        //  {
+        //  /*** 画像に描画する ***/
+        //  p_c.at<cv::Vec3b>(j, i)[0] = 120;
+        //  p_c.at<cv::Vec3b>(j, i)[1] = 255;
+        //  p_c.at<cv::Vec3b>(j, i)[2] = 255;
+        // // cout<< i << "," << j << endl;
+        //  }
+        //   else if (x * x + y * y < range * range && z <= 0.15 && b > 5)
+        //  {
+        //  p_c.at<cv::Vec3b>(j, i)[0] = 240;
+        //  p_c.at<cv::Vec3b>(j, i)[1] = 255;
+        //  p_c.at<cv::Vec3b>(j, i)[2] = 255;
+        //  }
+        if (x * x + y * y < Range_max * Range_max && x * x + y * y > Range_min * Range_min && 0 <= i && i < W_i && 0 <= j && j < H_i && z <= 0.20)
         {
           /*** 画像に描画する ***/
           // dst_rf.at<cv::Vec3b>(j, i)[0] = 120 - k;
@@ -216,7 +256,7 @@ int main(int argc, char **argv)
             //dst.at<cv::Vec3b>(y_i, x_i)[2] = R;
           //}
           // uchar s, v;
-          // for (int y = 0; y < dst.rows; y++)
+          // for (int y = 0; y < dst.row s; y++)
           // {
           //   for (int x = 0; x < dst.cols; x++)
           //   {
@@ -241,8 +281,13 @@ int main(int argc, char **argv)
     /*** img画像のデータ読み込み ***/
     char num_str2[10];
     snprintf(num_str2, sizeof(num_str2), "%06d", file_cnt2);
+<<<<<<< HEAD
     cv::Mat img = cv::imread(img_path3 + num_str2 + ".png");
     //cout << "num: " <<num_str2 << ", cnt: " << file_cnt2 <<  endl;
+=======
+    cv::Mat img = cv::imread(img_path9+ num_str2 + ".png");
+    // cout << "num: " <<num_str2 << ", cnt: " << file_cnt2 <<  endl;
+>>>>>>> dca779079ece452eae101a06b001cd1fdde609a8
     file_cnt2++;
 
     /*** 拡大画像の表示 ***/
@@ -254,7 +299,7 @@ int main(int argc, char **argv)
     //     int Px, Py;
     //     Px = 2250;
     //     Py = 2250;
-    //     img_map.at<cv::Vec3b>(j, i) = dst.at<cv::Vec3b>(j + Px, i + Py);
+    //     img_map.at<cv::Vec3b>(j, i) = campus_map.at<cv::Vec3b>(j + Px, i + Py);
     //   }
     // }
 
@@ -269,14 +314,37 @@ int main(int argc, char **argv)
     cv::imshow("つくば", resized_map1);
     //cv::imshow("境界線", resized_map2);
     // cv::imshow("点群画像", p_c);
+<<<<<<< HEAD
     cv::imshow("芝生画像", img);
+=======
+    //cv::imshow("芝生画像", img);
+>>>>>>> dca779079ece452eae101a06b001cd1fdde609a8
     /*** 0.5秒ごとに画像切り替わり ***/
     cv::waitKey(1);
     // cout << file_cnt4 << endl;
     // file_cnt4++;
     //  resize_cnt++;
   }
+<<<<<<< HEAD
   cv::imwrite("map_20220723_115050 S-1-4-7-11-S.png", tsukuba_map);
+=======
+  cv::imwrite("自律走行_sensor_20220917_134935.png", tsukuba_map);
+>>>>>>> dca779079ece452eae101a06b001cd1fdde609a8
   //cv::imwrite("boundary_20.png", dst);
   return 0;
 }
+// {
+//   uchar s, v, h;
+//     for(int y = 0; y < img.rows; y++){
+//       for(int x = 0; x < img.cols; x++){
+//         if(s == 0)
+//         img.at<cv::Vec3b>(y,x) = ref;
+//         if(s != 0){
+//           if(img.at<cv::Vec3b>(y,x) < ref){
+//             img.at<cvVec3b>(y, x) = ref;
+//           }
+
+//       }
+//     }
+//   }
+// }
